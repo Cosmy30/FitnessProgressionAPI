@@ -1,0 +1,16 @@
+# build folders
+/bin
+/obj
+**/bin/
+**/obj/
+
+# visual studio
+.vs/
+
+# user files
+*.user
+*.suo
+
+#personal notes
+Personal_Notes.docx
+
