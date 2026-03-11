@@ -11,6 +11,9 @@
 *.user
 *.suo
 
-#personal notes
+# personal notes
 Personal_Notes.docx
+
+# other files
+~$*
 
