@@ -1,4 +1,4 @@
-# Fitness Progression API
+# FitnessProgressionAPI
 
 An ASP.NET Core Web API designed to track workout progress
 
