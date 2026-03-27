@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using FitnessProgressionAPI.Models;
 
 namespace FitnessProgressionAPI.Data
 {

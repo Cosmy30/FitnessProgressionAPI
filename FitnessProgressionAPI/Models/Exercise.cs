@@ -1,16 +1,19 @@
 using System.ComponentModel.DataAnnotations;
 
-public class Exercise
+namespace FitnessProgressionAPI.Models
 {
-    public int Id { get; set; }
+    public class Exercise
+    {
+        public int Id { get; set; }
 
-    [MaxLength(100)]
-    public string Category { get; set; } = "";
+        [MaxLength(100)]
+        public string Category { get; set; } = "";
 
-    public int DifficultyLevel { get; set; }
+        public int DifficultyLevel { get; set; }
 
-    [MaxLength(100)]
-    public string Family { get; set; } = "";
+        [MaxLength(100)]
+        public string Family { get; set; } = "";
 
-    public List<ExerciseLog> ExerciseLogs { get; set; } = new List<ExerciseLog>();
+        public List<ExerciseLog> ExerciseLogs { get; set; } = new List<ExerciseLog>();
+    }
 }
