@@ -1,0 +1,22 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace FitnessProgressionAPI.DTOs
+{
+    public class UpdateUserDto
+    {
+        [StringLength(100)]
+        public string? Name { get; set; }
+
+        [EmailAddress]
+        [StringLength(255)]
+        public string? Email { get; set; }
+
+        [StringLength(100, MinimumLength = 6)]
+        public string? Password { get; set; }
+
+        public DateTime? DateOfBirth { get; set; }
+
+        [Range(0, 500)]
+        public decimal? Weight { get; set; }
+    }
+}
