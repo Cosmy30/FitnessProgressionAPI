@@ -44,5 +44,6 @@ namespace FitnessProgressionAPI.Controllers
 
             return Ok(user);
         }
+
     }
 }
