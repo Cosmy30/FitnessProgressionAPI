@@ -49,12 +49,30 @@ namespace FitnessProgressionAPI.Controllers
         }
 
         [HttpPost]
-        public ActionResult<User> Create(User user)
+        public async Task<ActionResult<UserResponseDto>> CreateUser(CreateUserDto dto)
         {
-            _context.Users.Add(user);
-            _context.SaveChanges();
+            User user = new User
+            {
+                Name = dto.Name,
+                Email = dto.Email,
+                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
+                DateOfBirth = dto.DateOfBirth,
+                Weight = dto.Weight
+            };
 
-            return Ok(user);
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
+
+            var result = new UserResponseDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                Weight = user.Weight
+            };
+
+            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, result);
         }
 
     }
