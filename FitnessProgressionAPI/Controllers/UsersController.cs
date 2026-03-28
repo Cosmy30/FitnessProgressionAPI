@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using FitnessProgressionAPI.Data;
 using FitnessProgressionAPI.Models;
+using FitnessProgressionAPI.DTOs;
 
 namespace FitnessProgressionAPI.Controllers
 {
@@ -16,11 +18,21 @@ namespace FitnessProgressionAPI.Controllers
         }
 
         [HttpGet]
-        public ActionResult<List<User>> GetAll()
+        public async Task<ActionResult<List<UserResponseDto>>> GetUsers()
         {
-            List<User> users = _context.Users.ToList();
-            
-            return Ok(users);
+            var result = await _context.Users
+                .AsNoTracking()
+                .Select(user => new UserResponseDto
+                {
+                    Id = user.Id,
+                    Name = user.Name,
+                    Email = user.Email,
+                    DateOfBirth = user.DateOfBirth,
+                    Weight = user.Weight
+
+                }).ToListAsync();
+
+            return result;
         }
 
         [HttpGet("{id}")]
