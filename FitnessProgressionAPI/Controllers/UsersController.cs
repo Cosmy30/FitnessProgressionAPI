@@ -21,14 +21,13 @@ namespace FitnessProgressionAPI.Controllers
         public async Task<ActionResult<List<UserResponseDto>>> GetUsers()
         {
             var result = await _context.Users
-                .AsNoTracking()
-                .Select(user => new UserResponseDto
+                .Select(u => new UserResponseDto
                 {
-                    Id = user.Id,
-                    Name = user.Name,
-                    Email = user.Email,
-                    DateOfBirth = user.DateOfBirth,
-                    Weight = user.Weight
+                    Id = u.Id,
+                    Name = u.Name,
+                    Email = u.Email,
+                    DateOfBirth = u.DateOfBirth,
+                    Weight = u.Weight
 
                 }).ToListAsync();
 
