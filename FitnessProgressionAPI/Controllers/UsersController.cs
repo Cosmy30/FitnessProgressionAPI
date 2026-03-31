@@ -84,5 +84,34 @@ namespace FitnessProgressionAPI.Controllers
             return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, result);
         }
 
+        [HttpPatch]
+        public async Task<ActionResult<UserResponseDto>> PatchUser(int id, UpdateUserDto dto)
+        {
+            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+
+            if (user == null)
+            {
+                return NotFound();
+            }
+
+            user.Name = dto.Name ?? user.Name;
+            user.Email = dto.Email ?? user.Email;
+            user.DateOfBirth = dto.DateOfBirth ?? user.DateOfBirth;
+            user.Weight = dto.Weight ?? user.Weight;
+
+            await _context.SaveChangesAsync();
+
+            var result = new UserResponseDto
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Email = user.Email,
+                DateOfBirth = user.DateOfBirth,
+                Weight = user.Weight
+            };
+
+            return Ok(result);
+        }
+
     }
 }
