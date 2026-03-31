@@ -12,7 +12,7 @@ namespace FitnessProgressionAPI.Controllers
     {
         private readonly AppDbContext _context;
 
-        public UsersController (AppDbContext context)
+        public UsersController(AppDbContext context)
         {
             _context = context;
         }
@@ -31,14 +31,13 @@ namespace FitnessProgressionAPI.Controllers
 
                 }).ToListAsync();
 
-            return result;
+            return Ok(result);
         }
 
         [HttpGet("{id}")]
         public async Task<ActionResult<UserResponseDto>> GetUserById(int id)
         {
             var result = await _context.Users
-                .Where(u => u.Id == id)
                 .Select(u => new UserResponseDto
                 {
                     Id = u.Id,
@@ -47,20 +46,20 @@ namespace FitnessProgressionAPI.Controllers
                     DateOfBirth = u.DateOfBirth,
                     Weight = u.Weight
 
-                }).FirstOrDefaultAsync();
+                }).FirstOrDefaultAsync(u => u.Id == id);
 
             if (result == null)
             {
                 return NotFound();
             }
-            
-            return result;
+
+            return Ok(result);
         }
 
         [HttpPost]
         public async Task<ActionResult<UserResponseDto>> CreateUser(CreateUserDto dto)
         {
-            User user = new User
+            var user = new User
             {
                 Name = dto.Name,
                 Email = dto.Email,
