@@ -38,23 +38,14 @@ namespace FitnessProgressionAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserResponseDto>> GetUserById(int id)
         {
-            var result = await _context.Users
-                .Select(u => new UserResponseDto
-                {
-                    Id = u.Id,
-                    Name = u.Name,
-                    Email = u.Email,
-                    DateOfBirth = u.DateOfBirth,
-                    Weight = u.Weight
+            var user = await _userService.GetById(id);
 
-                }).FirstOrDefaultAsync(u => u.Id == id);
-
-            if (result == null)
+            if (user == null)
             {
                 return NotFound();
             }
 
-            return Ok(result);
+            return Ok(user.ToDto());
         }
 
         [HttpPost]

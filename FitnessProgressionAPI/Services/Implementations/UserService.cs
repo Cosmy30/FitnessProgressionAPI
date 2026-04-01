@@ -18,9 +18,9 @@ namespace FitnessProgressionAPI.Services.Implementations
 
         }
 
-        public async Task<User> GetById(int id)
+        public Task<User> GetById(int id)
         {
-            
+            return _context.Users.FindAsync(id).AsTask();
         }
 
         public async Task<User> Create()
