@@ -1,8 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FitnessProgressionAPI.Data;
 using FitnessProgressionAPI.Models;
 using FitnessProgressionAPI.DTOs;
+using FitnessProgressionAPI.Services.Interfaces;
+using FitnessProgressionAPI.Extensions;
 
 namespace FitnessProgressionAPI.Controllers
 {
@@ -10,11 +11,11 @@ namespace FitnessProgressionAPI.Controllers
     [Route("api/[controller]")]
     public class UsersController : ControllerBase
     {
-        private readonly AppDbContext _context;
+        private readonly IUserService _userService;
 
-        public UsersController(AppDbContext context)
+        public UsersController(IUserService userService)
         {
-            _context = context;
+            _userService = userService;
         }
 
         [HttpGet]
