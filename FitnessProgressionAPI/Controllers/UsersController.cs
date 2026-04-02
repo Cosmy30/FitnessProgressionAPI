@@ -28,14 +28,14 @@ namespace FitnessProgressionAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserResponseDto>> GetUserById(int id)
         {
-            var user = await _userService.GetById(id);
+            var result = await _userService.GetById(id);
 
-            if (user == null)
+            if (result == null)
             {
                 return NotFound();
             }
 
-            return Ok(user.ToDto());
+            return Ok(result);
         }
 
         [HttpPost]

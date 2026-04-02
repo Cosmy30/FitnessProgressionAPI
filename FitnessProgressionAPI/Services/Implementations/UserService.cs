@@ -21,9 +21,12 @@ namespace FitnessProgressionAPI.Services.Implementations
             return _context.Users.Select(UserExtensions.ToDto()).ToListAsync();
         }
 
-        public Task<User> GetById(int id)
+        public Task<UserResponseDto?> GetById(int id)
         {
-            return _context.Users.FindAsync(id).AsTask();
+            return _context.Users
+                .Where(u => u.Id == id)
+                .Select(UserExtensions.ToDto())
+                .FirstOrDefaultAsync();
         }
 
         public async Task<User> Create()
