@@ -1,6 +1,9 @@
-﻿using FitnessProgressionAPI.Services.Interfaces;
+﻿using Microsoft.EntityFrameworkCore;
+using FitnessProgressionAPI.Services.Interfaces;
 using FitnessProgressionAPI.Data;
 using FitnessProgressionAPI.Models;
+using FitnessProgressionAPI.Extensions;
+using FitnessProgressionAPI.DTOs;
 
 namespace FitnessProgressionAPI.Services.Implementations
 {
@@ -13,9 +16,9 @@ namespace FitnessProgressionAPI.Services.Implementations
             _context = context;
         }
 
-        public async Task<List<User>> GetAll()
+        public Task<List<UserResponseDto>> GetAll()
         {
-
+            return _context.Users.Select(UserExtensions.ToDto()).ToListAsync();
         }
 
         public Task<User> GetById(int id)

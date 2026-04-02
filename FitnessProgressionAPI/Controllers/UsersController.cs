@@ -3,7 +3,6 @@ using Microsoft.EntityFrameworkCore;
 using FitnessProgressionAPI.Models;
 using FitnessProgressionAPI.DTOs;
 using FitnessProgressionAPI.Services.Interfaces;
-using FitnessProgressionAPI.Extensions;
 
 namespace FitnessProgressionAPI.Controllers
 {
@@ -21,16 +20,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<UserResponseDto>>> GetUsers()
         {
-            var result = await _context.Users
-                .Select(u => new UserResponseDto
-                {
-                    Id = u.Id,
-                    Name = u.Name,
-                    Email = u.Email,
-                    DateOfBirth = u.DateOfBirth,
-                    Weight = u.Weight
-
-                }).ToListAsync();
+            var result = await _userService.GetAll();
 
             return Ok(result);
         }
