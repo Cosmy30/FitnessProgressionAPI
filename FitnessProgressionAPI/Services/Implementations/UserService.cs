@@ -2,8 +2,8 @@
 using FitnessProgressionAPI.Services.Interfaces;
 using FitnessProgressionAPI.Data;
 using FitnessProgressionAPI.Models;
-using FitnessProgressionAPI.Extensions;
 using FitnessProgressionAPI.DTOs;
+using FitnessProgressionAPI.Mappings;
 
 namespace FitnessProgressionAPI.Services.Implementations
 {
@@ -18,14 +18,14 @@ namespace FitnessProgressionAPI.Services.Implementations
 
         public Task<List<UserResponseDto>> GetAll()
         {
-            return _context.Users.Select(UserExtensions.ToDto()).ToListAsync();
+            return _context.Users.Select(UserMappings.ToDtoExpression()).ToListAsync();
         }
 
         public Task<UserResponseDto?> GetById(int id)
         {
             return _context.Users
                 .Where(u => u.Id == id)
-                .Select(UserExtensions.ToDto())
+                .Select(UserMappings.ToDtoExpression())
                 .FirstOrDefaultAsync();
         }
 
