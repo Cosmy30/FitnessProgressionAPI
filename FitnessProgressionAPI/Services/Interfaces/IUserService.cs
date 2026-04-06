@@ -1,5 +1,4 @@
-﻿using FitnessProgressionAPI.Models;
-using FitnessProgressionAPI.DTOs;
+﻿using FitnessProgressionAPI.DTOs;
 
 namespace FitnessProgressionAPI.Services.Interfaces
 {
@@ -8,7 +7,7 @@ namespace FitnessProgressionAPI.Services.Interfaces
         public Task<List<UserResponseDto>> GetAll();
         public Task<UserResponseDto?> GetById(int id);
         public Task<UserResponseDto> Create(CreateUserDto dto);
-        public Task<User> UpdatePartial(int id);
+        public Task<UserResponseDto?> Patch(int id, UpdateUserDto dto);
         public Task<bool> Delete(int id);
 
     }

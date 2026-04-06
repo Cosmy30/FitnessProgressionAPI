@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using FitnessProgressionAPI.Services.Interfaces;
 using FitnessProgressionAPI.Data;
-using FitnessProgressionAPI.Models;
 using FitnessProgressionAPI.DTOs;
 using FitnessProgressionAPI.Mappings;
+using FitnessProgressionAPI.Extensions;
 
 namespace FitnessProgressionAPI.Services.Implementations
 {
@@ -18,7 +18,9 @@ namespace FitnessProgressionAPI.Services.Implementations
 
         public Task<List<UserResponseDto>> GetAll()
         {
-            return _context.Users.Select(UserMappings.ToDtoExpression()).ToListAsync();
+            return _context.Users
+                .Select(UserMappings.ToDtoExpression())
+                .ToListAsync();
         }
 
         public Task<UserResponseDto?> GetById(int id)
@@ -38,9 +40,19 @@ namespace FitnessProgressionAPI.Services.Implementations
             return user.ToDto();
         }
 
-        public async Task<User> UpdatePartial(int id)
+        public async Task<UserResponseDto?> Patch(int id, UpdateUserDto dto)
         {
+            var user = await _context.Users.FindAsync(id);
 
+            if (user == null)
+            {
+                return null;
+            }
+
+            user.ApplyUpdate(dto);
+            await _context.SaveChangesAsync();
+
+            return user.ToDto();
         }
 
         public async Task<bool> Delete(int id)
