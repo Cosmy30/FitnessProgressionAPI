@@ -29,9 +29,13 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<User> Create()
+        public async Task<UserResponseDto> Create(CreateUserDto dto)
         {
+            var user = dto.ToUser();
+            _context.Users.Add(user);
+            await _context.SaveChangesAsync();
 
+            return user.ToDto();
         }
 
         public async Task<User> UpdatePartial(int id)

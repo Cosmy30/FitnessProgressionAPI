@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using FitnessProgressionAPI.Models;
 using FitnessProgressionAPI.DTOs;
 using FitnessProgressionAPI.Services.Interfaces;
 
@@ -41,28 +40,9 @@ namespace FitnessProgressionAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<UserResponseDto>> CreateUser(CreateUserDto dto)
         {
-            var user = new User
-            {
-                Name = dto.Name,
-                Email = dto.Email,
-                PasswordHash = BCrypt.Net.BCrypt.HashPassword(dto.Password),
-                DateOfBirth = dto.DateOfBirth,
-                Weight = dto.Weight
-            };
-
-            _context.Users.Add(user);
-            await _context.SaveChangesAsync();
-
-            var result = new UserResponseDto
-            {
-                Id = user.Id,
-                Name = user.Name,
-                Email = user.Email,
-                DateOfBirth = user.DateOfBirth,
-                Weight = user.Weight
-            };
-
-            return CreatedAtAction(nameof(GetUserById), new { id = user.Id }, result);
+            var result = await _userService.Create(dto);
+            
+            return CreatedAtAction(nameof(GetUserById), new { id = result.Id }, result);
         }
 
         [HttpPatch]

@@ -7,7 +7,7 @@ namespace FitnessProgressionAPI.Services.Interfaces
     {
         public Task<List<UserResponseDto>> GetAll();
         public Task<UserResponseDto?> GetById(int id);
-        public Task<User> Create();
+        public Task<UserResponseDto> Create(CreateUserDto dto);
         public Task<User> UpdatePartial(int id);
         public Task<bool> Delete(int id);
 
