@@ -58,18 +58,15 @@ namespace FitnessProgressionAPI.Controllers
             return Ok(result);
         }
 
-        [HttpDelete]
+        [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
+            var result = await _userService.DeleteById(id);
 
-            if (user == null)
+            if (!result)
             {
                 return NotFound();
             }
-
-            _context.Users.Remove(user);
-            await _context.SaveChangesAsync();
 
             return NoContent();
         }

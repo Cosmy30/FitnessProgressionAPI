@@ -55,9 +55,19 @@ namespace FitnessProgressionAPI.Services.Implementations
             return user.ToDto();
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeleteById(int id)
         {
+            var user = await _context.Users.FindAsync(id);
 
+            if (user == null)
+            {
+                return false;
+            }
+
+            _context.Users.Remove(user);
+            await _context.SaveChangesAsync();
+
+            return true;
         }
     }
 }
