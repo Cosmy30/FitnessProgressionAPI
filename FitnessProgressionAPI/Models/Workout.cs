@@ -9,7 +9,7 @@ namespace FitnessProgressionAPI.Models
 
         public DateTime WorkoutDate { get; set; }
 
-        public TimeSpan Length { get; set; }
+        public int DurationMinutes { get; set; }
 
         [MaxLength(100)]
         public string Notes { get; set; } = "";
