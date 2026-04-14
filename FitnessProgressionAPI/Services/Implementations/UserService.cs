@@ -1,9 +1,9 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using FitnessProgressionAPI.Services.Interfaces;
 using FitnessProgressionAPI.Data;
-using FitnessProgressionAPI.DTOs;
 using FitnessProgressionAPI.Mappings;
 using FitnessProgressionAPI.Extensions;
+using FitnessProgressionAPI.DTOs.Users;
 
 namespace FitnessProgressionAPI.Services.Implementations
 {

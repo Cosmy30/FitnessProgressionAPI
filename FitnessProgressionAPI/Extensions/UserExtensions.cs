@@ -1,4 +1,4 @@
-﻿using FitnessProgressionAPI.DTOs;
+﻿using FitnessProgressionAPI.DTOs.Users;
 using FitnessProgressionAPI.Models;
 
 namespace FitnessProgressionAPI.Extensions

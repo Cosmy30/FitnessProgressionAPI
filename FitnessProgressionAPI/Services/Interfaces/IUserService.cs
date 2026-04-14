@@ -1,4 +1,4 @@
-﻿using FitnessProgressionAPI.DTOs;
+﻿using FitnessProgressionAPI.DTOs.Users;
 
 namespace FitnessProgressionAPI.Services.Interfaces
 {
