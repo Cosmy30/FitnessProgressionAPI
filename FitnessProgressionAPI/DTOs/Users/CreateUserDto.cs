@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace FitnessProgressionAPI.DTOs
+namespace FitnessProgressionAPI.DTOs.Users
 {
     public class CreateUserDto
     {

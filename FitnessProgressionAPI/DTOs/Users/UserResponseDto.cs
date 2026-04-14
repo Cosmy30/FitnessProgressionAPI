@@ -1,4 +1,4 @@
-﻿namespace FitnessProgressionAPI.DTOs
+﻿namespace FitnessProgressionAPI.DTOs.Users
 {
     public class UserResponseDto
     {
@@ -7,6 +7,5 @@
         public string Email { get; set; }
         public DateTime DateOfBirth { get; set; }
         public decimal Weight { get; set; }
-
     }
 }
