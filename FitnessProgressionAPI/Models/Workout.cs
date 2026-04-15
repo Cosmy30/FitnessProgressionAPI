@@ -11,8 +11,8 @@ namespace FitnessProgressionAPI.Models
 
         public int DurationMinutes { get; set; }
 
-        [MaxLength(100)]
-        public string Notes { get; set; } = "";
+        [MaxLength(1000)]
+        public string? Notes { get; set; }
 
         public WorkoutType Type { get; set; }
 
