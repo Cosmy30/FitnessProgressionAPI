@@ -11,6 +11,7 @@ namespace FitnessProgressionAPI.DTOs.Workouts
         [StringLength(1000)]
         public string? Notes { get; set; }
 
-        public WorkoutType Type { get; set; }
+        [Required]
+        public WorkoutType? Type { get; set; }
     }
 }
