@@ -2,8 +2,8 @@
 {
     public enum WorkoutType
     {
-        Calisthenics,
-        Weightlifting,
-        Custom
+        Calisthenics = 1,
+        Weightlifting = 2,
+        Custom = 3
     }
 }
