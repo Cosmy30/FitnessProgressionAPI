@@ -5,15 +5,15 @@ using FitnessProgressionAPI.Services.Implementations;
 
 var builder = WebApplication.CreateBuilder(args);
 
-    builder.Services.AddControllers().AddJsonOptions(options =>
-    {
+builder.Services.AddControllers().AddJsonOptions(options =>
+{
     options.JsonSerializerOptions.Converters.Add(
         new System.Text.Json.Serialization.JsonStringEnumConverter());
-    });
+});
 
 builder.Services.AddEndpointsApiExplorer();
 
-builder.Services.AddSwaggerGen(options => 
+builder.Services.AddSwaggerGen(options =>
         options.SwaggerDoc("v1", new()
         {
             Title = "FitnessProgressionAPI",
