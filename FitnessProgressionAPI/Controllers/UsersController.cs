@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using FitnessProgressionAPI.Services.Interfaces;
 using FitnessProgressionAPI.DTOs.Users;
+using FitnessProgressionAPI.DTOs.Workouts;
+using FitnessProgressionAPI.Services.Interfaces;
 
 namespace FitnessProgressionAPI.Controllers
 {
@@ -9,10 +10,12 @@ namespace FitnessProgressionAPI.Controllers
     public class UsersController : ControllerBase
     {
         private readonly IUserService _userService;
+        private readonly IWorkoutService _workoutService;
 
-        public UsersController(IUserService userService)
+        public UsersController(IUserService userService, IWorkoutService workoutService)
         {
             _userService = userService;
+            _workoutService = workoutService;
         }
 
         [HttpGet]
@@ -27,6 +30,19 @@ namespace FitnessProgressionAPI.Controllers
         public async Task<ActionResult<UserResponseDto>> GetUserById(int id)
         {
             var result = await _userService.GetById(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
+
+        [HttpGet("{userId}/workouts")]
+        public async Task<ActionResult<List<WorkoutResponseDto>>> GetUserWorkouts(int userId)
+        {
+            var result = await _workoutService.GetWorkoutsByUserId(userId);
 
             if (result == null)
             {

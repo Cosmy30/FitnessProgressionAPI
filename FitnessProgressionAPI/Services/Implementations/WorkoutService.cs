@@ -22,5 +22,20 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .Select(WorkoutMappings.ToDtoExpression())
                 .FirstOrDefaultAsync();
         }
+
+        public async Task<List<WorkoutResponseDto>> GetWorkoutsByUserId(int userId)
+        {
+            var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
+
+            if (!userExists)
+            {
+                return null;
+            }
+            
+            return await _context.Workouts
+                .Where(w => w.UserId == userId)
+                .Select(WorkoutMappings.ToDtoExpression())
+                .ToListAsync();
+        }
     }
 }

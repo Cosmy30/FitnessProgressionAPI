@@ -1,6 +1,6 @@
-﻿using FitnessProgressionAPI.DTOs.Workouts;
+﻿using Microsoft.AspNetCore.Mvc;
+using FitnessProgressionAPI.DTOs.Workouts;
 using FitnessProgressionAPI.Services.Interfaces;
-using Microsoft.AspNetCore.Mvc;
 
 namespace FitnessProgressionAPI.Controllers
 {
