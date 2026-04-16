@@ -18,6 +18,18 @@ namespace FitnessProgressionAPI.Mappings
             };
         }
 
+        public static WorkoutResponseDto ToDto(this Workout workout)
+        {
+            return new WorkoutResponseDto
+            {
+                Id = workout.Id,
+                WorkoutDate = workout.WorkoutDate,
+                DurationMinutes = workout.DurationMinutes,
+                Notes = workout.Notes,
+                Type = workout.Type
+            };
+        }
+
         public static Workout ToWorkout(this CreateWorkoutDto dto, int userId)
         {
             return new Workout
