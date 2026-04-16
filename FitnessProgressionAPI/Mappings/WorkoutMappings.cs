@@ -17,5 +17,17 @@ namespace FitnessProgressionAPI.Mappings
                 Type = w.Type
             };
         }
+
+        public static Workout ToWorkout(this CreateWorkoutDto dto, int userId)
+        {
+            return new Workout
+            {
+                WorkoutDate = DateTime.UtcNow,
+                DurationMinutes = dto.DurationMinutes,
+                Notes = dto.Notes,
+                Type = dto.Type!.Value,
+                UserId = userId
+            };
+        }
     }
 }
