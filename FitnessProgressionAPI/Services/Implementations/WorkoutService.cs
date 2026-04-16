@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using FitnessProgressionAPI.Data;
 using FitnessProgressionAPI.DTOs.Workouts;
+using FitnessProgressionAPI.Enums;
 using FitnessProgressionAPI.Mappings;
 using FitnessProgressionAPI.Services.Interfaces;
 
@@ -36,6 +37,27 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .Where(w => w.UserId == userId)
                 .Select(WorkoutMappings.ToDtoExpression())
                 .ToListAsync();
+        }
+
+        public async Task<WorkoutResponseDto?> Create(int userId, CreateWorkoutDto dto)
+        {
+            if (!Enum.IsDefined<WorkoutType>(dto.Type!.Value))
+            {
+                return null;
+            }
+
+            var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
+
+            if (!userExists)
+            {
+                return null;
+            }
+            
+            var workout = dto.ToWorkout(userId);
+            _context.Workouts.Add(workout);
+            await _context.SaveChangesAsync();
+
+            return workout.ToDto();
         }
     }
 }

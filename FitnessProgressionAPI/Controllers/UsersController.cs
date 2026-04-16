@@ -60,6 +60,19 @@ namespace FitnessProgressionAPI.Controllers
             return CreatedAtAction(nameof(GetUserById), new { id = result.Id }, result);
         }
 
+        [HttpPost("{userId}/workouts")]
+        public async Task<ActionResult<UserResponseDto>> CreateUserWorkout(int userId, CreateWorkoutDto dto)
+        {
+            var result = await _workoutService.Create(userId, dto);
+
+            if (result == null)
+            {
+                return BadRequest("UserId not found or invalid workout type.");
+            }
+
+            return CreatedAtAction(nameof(GetUserWorkouts), new { userId }, result);
+        }
+
         [HttpPatch("{id}")]
         public async Task<ActionResult<UserResponseDto>> PatchUser(int id, UpdateUserDto dto)
         {
