@@ -61,7 +61,7 @@ namespace FitnessProgressionAPI.Controllers
         }
 
         [HttpPost("{userId}/workouts")]
-        public async Task<ActionResult<UserResponseDto>> CreateUserWorkout(int userId, CreateWorkoutDto dto)
+        public async Task<ActionResult<WorkoutResponseDto>> CreateUserWorkout(int userId, CreateWorkoutDto dto)
         {
             var result = await _workoutService.Create(userId, dto);
 
