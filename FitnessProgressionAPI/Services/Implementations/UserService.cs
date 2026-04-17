@@ -69,5 +69,10 @@ namespace FitnessProgressionAPI.Services.Implementations
 
             return true;
         }
+
+        public Task<bool> UserExistsAsync(int id)
+        {
+            return _context.Users.AnyAsync(u => u.Id == id);
+        }
     }
 }

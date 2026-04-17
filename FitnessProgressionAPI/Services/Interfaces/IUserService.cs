@@ -9,5 +9,6 @@ namespace FitnessProgressionAPI.Services.Interfaces
         public Task<UserResponseDto> Create(CreateUserDto dto);
         public Task<UserResponseDto?> Patch(int id, UpdateUserDto dto);
         public Task<bool> Delete(int id);
+        public Task<bool> UserExistsAsync(int id);
     }
 }
