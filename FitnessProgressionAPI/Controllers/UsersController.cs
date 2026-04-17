@@ -89,7 +89,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var result = await _userService.DeleteById(id);
+            var result = await _userService.Delete(id);
 
             if (!result)
             {

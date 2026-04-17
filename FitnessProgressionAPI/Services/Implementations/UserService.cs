@@ -55,7 +55,7 @@ namespace FitnessProgressionAPI.Services.Implementations
             return user.ToDto();
         }
 
-        public async Task<bool> DeleteById(int id)
+        public async Task<bool> Delete(int id)
         {
             var user = await _context.Users.FindAsync(id);
 
