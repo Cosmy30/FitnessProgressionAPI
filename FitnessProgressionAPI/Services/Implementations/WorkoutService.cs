@@ -4,6 +4,7 @@ using FitnessProgressionAPI.DTOs.Workouts;
 using FitnessProgressionAPI.Enums;
 using FitnessProgressionAPI.Mappings;
 using FitnessProgressionAPI.Services.Interfaces;
+using FitnessProgressionAPI.Extensions;
 
 namespace FitnessProgressionAPI.Services.Implementations
 {
@@ -55,6 +56,26 @@ namespace FitnessProgressionAPI.Services.Implementations
             
             var workout = dto.ToWorkout(userId);
             _context.Workouts.Add(workout);
+            await _context.SaveChangesAsync();
+
+            return workout.ToDto();
+        }
+
+        public async Task<WorkoutResponseDto?> Patch(int id, UpdateWorkoutDto dto)
+        {
+            var workout = await _context.Workouts.FindAsync(id);
+
+            if (workout == null)
+            {
+                return null;
+            }
+
+            if (dto.Type != null && !Enum.IsDefined<WorkoutType>(dto.Type.Value))
+            {
+                return null;
+            }
+
+            workout.ApplyUpdate(dto);
             await _context.SaveChangesAsync();
 
             return workout.ToDto();

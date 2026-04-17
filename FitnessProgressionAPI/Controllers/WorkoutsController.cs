@@ -27,5 +27,18 @@ namespace FitnessProgressionAPI.Controllers
 
             return Ok(result);
         }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<WorkoutResponseDto>> PatchWorkout(int id, UpdateWorkoutDto dto)
+        {
+            var result = await _workoutService.Patch(id, dto);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }
