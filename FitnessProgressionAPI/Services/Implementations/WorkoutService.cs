@@ -80,5 +80,20 @@ namespace FitnessProgressionAPI.Services.Implementations
 
             return workout.ToDto();
         }
+
+        public async Task<bool> Delete(int id)
+        {
+            var workout = await _context.Workouts.FindAsync(id);
+
+            if (workout == null)
+            {
+                return false;
+            }
+
+            _context.Workouts.Remove(workout);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }

@@ -8,6 +8,6 @@ namespace FitnessProgressionAPI.Services.Interfaces
         public Task<List<WorkoutResponseDto>> GetWorkoutsByUserId(int userId);
         public Task<WorkoutResponseDto?> Create(int userId, CreateWorkoutDto dto);
         public Task<WorkoutResponseDto?> Patch(int id, UpdateWorkoutDto dto);
-        public Task<bool> DeleteById(int id);
+        public Task<bool> Delete(int id);
     }
 }

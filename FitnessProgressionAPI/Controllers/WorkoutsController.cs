@@ -40,5 +40,18 @@ namespace FitnessProgressionAPI.Controllers
 
             return Ok(result);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteWorkout(int id)
+        {
+            var result = await _workoutService.Delete(id);
+
+            if (!result)
+            {
+                return NotFound();
+            }
+
+            return NoContent();
+        }
     }
 }
