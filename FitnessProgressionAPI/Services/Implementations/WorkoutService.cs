@@ -46,13 +46,6 @@ namespace FitnessProgressionAPI.Services.Implementations
             {
                 return null;
             }
-
-            var userExists = await _context.Users.AnyAsync(u => u.Id == userId);
-
-            if (!userExists)
-            {
-                return null;
-            }
             
             var workout = dto.ToWorkout(userId);
             _context.Workouts.Add(workout);

@@ -31,12 +31,12 @@ namespace FitnessProgressionAPI.Controllers
         [HttpGet("/api/users/{userId}/workouts")]
         public async Task<ActionResult<List<WorkoutResponseDto>>> GetUserWorkouts(int userId)
         {
-            var result = await _workoutService.GetWorkoutsByUserId(userId);
-
-            if (result == null)
+            if (!await _userService.UserExistsAsync(userId))
             {
                 return NotFound();
             }
+            
+            var result = await _workoutService.GetWorkoutsByUserId(userId, type);
 
             return Ok(result);
         }
@@ -44,6 +44,11 @@ namespace FitnessProgressionAPI.Controllers
         [HttpPost("/api/users/{userId}/workouts")]
         public async Task<ActionResult<WorkoutResponseDto>> CreateUserWorkout(int userId, CreateWorkoutDto dto)
         {
+            if (!await _userService.UserExistsAsync(userId))
+            {
+                return NotFound();
+            }
+
             var result = await _workoutService.Create(userId, dto);
 
             if (result == null)
