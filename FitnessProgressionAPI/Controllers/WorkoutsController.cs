@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using FitnessProgressionAPI.DTOs.Workouts;
 using FitnessProgressionAPI.Services.Interfaces;
+using FitnessProgressionAPI.Enums;
 
 namespace FitnessProgressionAPI.Controllers
 {
@@ -9,10 +10,12 @@ namespace FitnessProgressionAPI.Controllers
     public class WorkoutsController : ControllerBase
     {
         private readonly IWorkoutService _workoutService;
+        private readonly IUserService _userService;
         
-        public WorkoutsController(IWorkoutService workoutService)
+        public WorkoutsController(IWorkoutService workoutService, IUserService userService)
         {
             _workoutService = workoutService;
+            _userService = userService;
         }
 
         [HttpGet("{id}")]
@@ -29,7 +32,7 @@ namespace FitnessProgressionAPI.Controllers
         }
 
         [HttpGet("/api/users/{userId}/workouts")]
-        public async Task<ActionResult<List<WorkoutResponseDto>>> GetUserWorkouts(int userId)
+        public async Task<ActionResult<List<WorkoutResponseDto>>> GetUserWorkouts(int userId, [FromQuery] WorkoutType? type)
         {
             if (!await _userService.UserExistsAsync(userId))
             {
