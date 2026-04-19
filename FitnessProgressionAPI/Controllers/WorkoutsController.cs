@@ -48,7 +48,7 @@ namespace FitnessProgressionAPI.Controllers
 
             if (result == null)
             {
-                return BadRequest("UserId not found or invalid workout type.");
+                return BadRequest("The workout type must be a valid enum value.");
             }
 
             return CreatedAtAction(nameof(GetUserWorkouts), new { userId }, result);
