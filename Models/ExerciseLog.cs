@@ -8,6 +8,8 @@ namespace FitnessProgressionAPI.Models
 
         public int ExerciseId { get; set; }
 
+        public Exercise Exercise { get; set; } = null!;
+
         public int Sets { get; set; }
 
         public int Reps { get; set; }
@@ -18,5 +20,7 @@ namespace FitnessProgressionAPI.Models
         public int RestSeconds { get; set; }
 
         public int WorkoutId { get; set; }
+
+        public Workout Workout { get; set; } = null!;
     }
 }
