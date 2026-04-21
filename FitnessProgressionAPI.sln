@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.10.35122.118
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FitnessProgressionAPI", "FitnessProgressionAPI\FitnessProgressionAPI.csproj", "{58C0C5EB-0421-40C3-9375-6FB916712B7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FitnessProgressionAPI", "FitnessProgressionAPI.csproj", "{B636E2AD-8E3A-9A89-10B9-98E827406AED}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{58C0C5EB-0421-40C3-9375-6FB916712B7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{58C0C5EB-0421-40C3-9375-6FB916712B7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{58C0C5EB-0421-40C3-9375-6FB916712B7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{58C0C5EB-0421-40C3-9375-6FB916712B7E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B636E2AD-8E3A-9A89-10B9-98E827406AED}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B636E2AD-8E3A-9A89-10B9-98E827406AED}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B636E2AD-8E3A-9A89-10B9-98E827406AED}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B636E2AD-8E3A-9A89-10B9-98E827406AED}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
