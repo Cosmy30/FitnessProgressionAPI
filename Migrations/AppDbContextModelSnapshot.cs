@@ -45,7 +45,7 @@ namespace FitnessProgressionAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Exercises");
+                    b.ToTable("Exercises", (string)null);
                 });
 
             modelBuilder.Entity("FitnessProgressionAPI.Models.ExerciseLog", b =>
@@ -80,7 +80,7 @@ namespace FitnessProgressionAPI.Migrations
 
                     b.HasIndex("WorkoutId");
 
-                    b.ToTable("ExerciseLogs");
+                    b.ToTable("ExerciseLogs", (string)null);
                 });
 
             modelBuilder.Entity("FitnessProgressionAPI.Models.User", b =>
@@ -114,7 +114,7 @@ namespace FitnessProgressionAPI.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("Users", (string)null);
                 });
 
             modelBuilder.Entity("FitnessProgressionAPI.Models.Workout", b =>
@@ -145,7 +145,7 @@ namespace FitnessProgressionAPI.Migrations
 
                     b.HasIndex("UserId");
 
-                    b.ToTable("Workouts");
+                    b.ToTable("Workouts", (string)null);
                 });
 
             modelBuilder.Entity("FitnessProgressionAPI.Models.ExerciseLog", b =>
