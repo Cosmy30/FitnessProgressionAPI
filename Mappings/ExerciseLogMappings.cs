@@ -1,6 +1,6 @@
 ﻿namespace FitnessProgressionAPI.Mappings
 {
-    public class ExerciseLogMappings
+    public static class ExerciseLogMappings
     {
         
     }
