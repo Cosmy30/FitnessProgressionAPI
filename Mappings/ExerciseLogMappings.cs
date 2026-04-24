@@ -8,15 +8,15 @@ namespace FitnessProgressionAPI.Mappings
     {
         public static Expression<Func<ExerciseLog, ExerciseLogResponseDto>> ToDtoExpression()
         {
-            return u => new ExerciseLogResponseDto
+            return e => new ExerciseLogResponseDto
             {
-                Id = u.Id,
-                ExerciseId = u.ExerciseId,
-                ExerciseName = u.Exercise.Name,
-                Sets = u.Sets,
-                Reps = u.Reps,
-                Weight = u.Weight,
-                RestSeconds = u.RestSeconds
+                Id = e.Id,
+                ExerciseId = e.ExerciseId,
+                ExerciseName = e.Exercise.Name,
+                Sets = e.Sets,
+                Reps = e.Reps,
+                Weight = e.Weight,
+                RestSeconds = e.RestSeconds
             };
         }
     }
