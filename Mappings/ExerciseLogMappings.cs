@@ -33,5 +33,18 @@ namespace FitnessProgressionAPI.Mappings
                 RestSeconds = exerciseLog.RestSeconds
             };
         }
+
+        public static ExerciseLog ToExerciseLog(this CreateExerciseLogDto dto, int workoutId)
+        {
+            return new ExerciseLog
+            {
+                ExerciseId = dto.ExerciseId,
+                Sets = dto.Sets ?? 0,
+                Reps = dto.Reps ?? 0,
+                Weight = dto.Weight ?? 0,
+                RestSeconds = dto.RestSeconds ?? 0,
+                WorkoutId = workoutId
+            };
+        }
     }
 }
