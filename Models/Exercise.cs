@@ -7,6 +7,9 @@ namespace FitnessProgressionAPI.Models
         public int Id { get; set; }
 
         [MaxLength(100)]
+        public string Name { get; set; } = "";
+
+        [MaxLength(100)]
         public string Category { get; set; } = "";
 
         public int DifficultyLevel { get; set; }
