@@ -4,7 +4,7 @@ namespace FitnessProgressionAPI.Controllers
 {
 
     [ApiController]
-    [Route("/api/[controller]")]
+    [Route("api/[controller]")]
     public class ExerciseLogsController : ControllerBase
     {
 
