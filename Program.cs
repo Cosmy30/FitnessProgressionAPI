@@ -26,6 +26,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(buil
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IWorkoutService, WorkoutService>();
 builder.Services.AddScoped<IExerciseLogService, ExerciseLogService>();
+builder.Services.AddScoped<IUserContext, FakeUserContext>();
 
 var app = builder.Build();
 
