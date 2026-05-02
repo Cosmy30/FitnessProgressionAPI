@@ -41,5 +41,18 @@ namespace FitnessProgressionAPI.Controllers
 
             return Ok(result);
         }
+
+        [HttpPost("/api/workouts/{workoutId}/exercise-logs")]
+        public async Task<ActionResult<ExerciseLogResponseDto>> CreateExerciseLog(int workoutId, CreateExerciseLogDto dto)
+        {
+            var result = await _exerciseLogService.Create(workoutId, dto);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return CreatedAtAction(nameof(GetExerciseLogById), new { result.Id } , result);
+        }
     }
 }

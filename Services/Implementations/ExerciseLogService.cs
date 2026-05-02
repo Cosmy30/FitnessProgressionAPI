@@ -42,5 +42,24 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .Select(ExerciseLogMappings.ToDtoExpression())
                 .ToListAsync();
         }
+
+        public async Task<ExerciseLogResponseDto?> Create(int workoutId, CreateExerciseLogDto dto)
+        {
+            int? dbUserId = await _context.Workouts
+                .Where(w => w.Id == workoutId)
+                .Select(w => (int?)w.UserId)
+                .FirstOrDefaultAsync();
+
+            if (dbUserId == null || dbUserId != _userContext.UserId)
+            {
+                return null;
+            }
+
+            var exerciseLog = dto.ToExerciseLog(workoutId);
+            _context.ExerciseLogs.Add(exerciseLog);
+            await _context.SaveChangesAsync();
+
+            return exerciseLog.ToDto();
+        }
     }
 }
