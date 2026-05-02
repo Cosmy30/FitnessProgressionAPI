@@ -28,5 +28,18 @@ namespace FitnessProgressionAPI.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("/api/workouts/{workoutId}/exercise-logs")]
+        public async Task<ActionResult<List<ExerciseLogResponseDto>>> GetWorkoutExerciseLogs(int workoutId)
+        {
+            var result = await _exerciseLogService.GetExerciseLogsByWorkoutId(workoutId);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }
