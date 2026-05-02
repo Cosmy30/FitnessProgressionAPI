@@ -9,12 +9,12 @@ namespace FitnessProgressionAPI.Services.Implementations
     public class ExerciseLogService : IExerciseLogService
     {
         private readonly AppDbContext _context;
-        private readonly IUserContext _userContext;
+        private readonly IWorkoutService _workoutService;
 
-        public ExerciseLogService(AppDbContext context, IUserContext userContext)
+        public ExerciseLogService(AppDbContext context, IWorkoutService workoutService)
         {
             _context = context;
-            _userContext = userContext;
+            _workoutService = workoutService;
         }
 
         public Task<ExerciseLogResponseDto?> GetByIdAsync(int id)
@@ -27,12 +27,7 @@ namespace FitnessProgressionAPI.Services.Implementations
 
         public async Task<List<ExerciseLogResponseDto>?> GetExerciseLogsByWorkoutId(int workoutId)
         {
-            int? dbUserId = await _context.Workouts
-                .Where(w => w.Id == workoutId)
-                .Select(w => (int?)w.UserId)
-                .FirstOrDefaultAsync();
-
-            if (dbUserId == null || dbUserId != _userContext.UserId)
+            if (!await _workoutService.BelongsToCurrentUser(workoutId))
             {
                 return null;
             }
@@ -45,12 +40,7 @@ namespace FitnessProgressionAPI.Services.Implementations
 
         public async Task<ExerciseLogResponseDto?> Create(int workoutId, CreateExerciseLogDto dto)
         {
-            int? dbUserId = await _context.Workouts
-                .Where(w => w.Id == workoutId)
-                .Select(w => (int?)w.UserId)
-                .FirstOrDefaultAsync();
-
-            if (dbUserId == null || dbUserId != _userContext.UserId)
+            if (!await _workoutService.BelongsToCurrentUser(workoutId))
             {
                 return null;
             }

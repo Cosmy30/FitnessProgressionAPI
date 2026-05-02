@@ -1,20 +1,22 @@
-﻿using Microsoft.EntityFrameworkCore;
-using FitnessProgressionAPI.Data;
+﻿using FitnessProgressionAPI.Data;
 using FitnessProgressionAPI.DTOs.Workouts;
 using FitnessProgressionAPI.Enums;
+using FitnessProgressionAPI.Extensions;
 using FitnessProgressionAPI.Mappings;
 using FitnessProgressionAPI.Services.Interfaces;
-using FitnessProgressionAPI.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace FitnessProgressionAPI.Services.Implementations
 {
     public class WorkoutService : IWorkoutService
     {
         private readonly AppDbContext _context;
+        private readonly IUserContext _userContext;
 
-        public WorkoutService(AppDbContext context)
+        public WorkoutService(AppDbContext context, IUserContext userContext)
         {
             _context = context;
+            _userContext = userContext;
         }
 
         public Task<WorkoutResponseDto?> GetById(int id)
@@ -87,6 +89,11 @@ namespace FitnessProgressionAPI.Services.Implementations
             await _context.SaveChangesAsync();
 
             return true;
+        }
+
+        public Task<bool> BelongsToCurrentUser(int workoutId)
+        {
+            return _context.Workouts.AnyAsync(w => w.Id == workoutId && w.UserId == _userContext.UserId);
         }
     }
 }
