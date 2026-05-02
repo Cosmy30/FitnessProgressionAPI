@@ -52,7 +52,7 @@ namespace FitnessProgressionAPI.Controllers
                 return NotFound();
             }
 
-            return CreatedAtAction(nameof(GetExerciseLogById), new { result.Id } , result);
+            return CreatedAtAction(nameof(GetExerciseLogById), new { id = result.Id } , result);
         }
     }
 }

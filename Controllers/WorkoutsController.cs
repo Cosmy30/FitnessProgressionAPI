@@ -59,7 +59,7 @@ namespace FitnessProgressionAPI.Controllers
                 return BadRequest("The workout type must be a valid enum value.");
             }
 
-            return CreatedAtAction(nameof(GetUserWorkouts), new { userId }, result);
+            return CreatedAtAction(nameof(GetWorkoutById), new { id = result.Id }, result);
         }
 
         [HttpPatch("{id}")]
