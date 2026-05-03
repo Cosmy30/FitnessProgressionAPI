@@ -54,5 +54,18 @@ namespace FitnessProgressionAPI.Controllers
 
             return CreatedAtAction(nameof(GetExerciseLogById), new { id = result.Id } , result);
         }
+
+        [HttpPatch("{id}")]
+        public async Task<ActionResult<ExerciseLogResponseDto>> PatchExerciseLog(int id, UpdateExerciseLogDto dto)
+        {
+            var result = await _exerciseLogService.Patch(id, dto);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }

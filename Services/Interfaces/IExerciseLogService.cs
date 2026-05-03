@@ -7,5 +7,6 @@ namespace FitnessProgressionAPI.Services.Interfaces
         public Task<ExerciseLogResponseDto?> GetByIdAsync(int id);
         public Task<List<ExerciseLogResponseDto>?> GetExerciseLogsByWorkoutId(int workoutId);
         public Task<ExerciseLogResponseDto?> Create(int workoutId, CreateExerciseLogDto dto);
+        public Task<ExerciseLogResponseDto?> Patch(int id, UpdateExerciseLogDto dto);
     }
 }

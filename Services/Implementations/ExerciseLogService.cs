@@ -1,5 +1,6 @@
 ﻿using FitnessProgressionAPI.Data;
 using FitnessProgressionAPI.DTOs.ExerciseLogs;
+using FitnessProgressionAPI.Extensions;
 using FitnessProgressionAPI.Mappings;
 using FitnessProgressionAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
@@ -47,6 +48,21 @@ namespace FitnessProgressionAPI.Services.Implementations
 
             var exerciseLog = dto.ToExerciseLog(workoutId);
             _context.ExerciseLogs.Add(exerciseLog);
+            await _context.SaveChangesAsync();
+
+            return exerciseLog.ToDto();
+        }
+
+        public async Task<ExerciseLogResponseDto?> Patch(int id, UpdateExerciseLogDto dto)
+        {
+            var exerciseLog = await _context.ExerciseLogs.FindAsync(id);
+
+            if (exerciseLog == null || !await _workoutService.BelongsToCurrentUser(exerciseLog.WorkoutId))
+            {
+                return null;
+            }
+
+            exerciseLog.ApplyUpdate(dto);
             await _context.SaveChangesAsync();
 
             return exerciseLog.ToDto();
