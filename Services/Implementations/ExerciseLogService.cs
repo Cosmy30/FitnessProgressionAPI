@@ -67,5 +67,20 @@ namespace FitnessProgressionAPI.Services.Implementations
 
             return exerciseLog.ToDto();
         }
+
+        public async Task<bool> Delete(int id)
+        {
+            var exerciseLog = await _context.ExerciseLogs.FindAsync(id);
+
+            if (exerciseLog == null || !await _workoutService.BelongsToCurrentUser(exerciseLog.WorkoutId))
+            {
+                return false;
+            }
+
+            _context.ExerciseLogs.Remove(exerciseLog);
+            await _context.SaveChangesAsync();
+
+            return true;
+        }
     }
 }
