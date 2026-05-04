@@ -50,7 +50,10 @@ namespace FitnessProgressionAPI.Services.Implementations
             _context.ExerciseLogs.Add(exerciseLog);
             await _context.SaveChangesAsync();
 
-            return exerciseLog.ToDto();
+            return await _context.ExerciseLogs
+                .Where(e => e.Id == exerciseLog.Id)
+                .Select(ExerciseLogMappings.ToDtoExpression())
+                .FirstOrDefaultAsync();
         }
 
         public async Task<ExerciseLogResponseDto?> Patch(int id, UpdateExerciseLogDto dto)
