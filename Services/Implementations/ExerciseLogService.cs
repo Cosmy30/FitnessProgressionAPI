@@ -18,9 +18,26 @@ namespace FitnessProgressionAPI.Services.Implementations
             _workoutService = workoutService;
         }
 
-        public Task<ExerciseLogResponseDto?> GetByIdAsync(int id)
+        public async Task<ExerciseLogResponseDto?> GetByIdAsync(int id)
         {
-            return _context.ExerciseLogs
+            var WorkoutIdOrNull = await _context.ExerciseLogs
+                .Where(e => e.Id == id)
+                .Select(e => (int?)e.WorkoutId)
+                .FirstOrDefaultAsync();
+
+            if (WorkoutIdOrNull == null)
+            {
+                return null;
+            }
+
+            var workoutId = WorkoutIdOrNull.Value;
+
+            if (!await _workoutService.BelongsToCurrentUser(workoutId))
+            {
+                return null;
+            }
+
+            return await _context.ExerciseLogs
                 .Where(e => e.Id == id)
                 .Select(ExerciseLogMappings.ToDtoExpression())
                 .FirstOrDefaultAsync();
