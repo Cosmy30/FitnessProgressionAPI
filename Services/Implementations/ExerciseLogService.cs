@@ -85,7 +85,10 @@ namespace FitnessProgressionAPI.Services.Implementations
             exerciseLog.ApplyUpdate(dto);
             await _context.SaveChangesAsync();
 
-            return exerciseLog.ToDto();
+            return await _context.ExerciseLogs
+                .Where(e => e.Id == id)
+                .Select(ExerciseLogMappings.ToDtoExpression())
+                .FirstOrDefaultAsync();
         }
 
         public async Task<bool> Delete(int id)
