@@ -1,3 +1,4 @@
+using FitnessProgressionAPI.Enums;
 using System.ComponentModel.DataAnnotations;
 
 namespace FitnessProgressionAPI.Models
@@ -12,7 +13,7 @@ namespace FitnessProgressionAPI.Models
         [MaxLength(100)]
         public string Category { get; set; } = "";
 
-        public int DifficultyLevel { get; set; }
+        public DifficultyLevel DifficultyLevel { get; set; }
 
         [MaxLength(100)]
         public string Family { get; set; } = "";
