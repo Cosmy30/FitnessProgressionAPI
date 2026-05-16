@@ -10,8 +10,7 @@ namespace FitnessProgressionAPI.Models
         [MaxLength(100)]
         public string Name { get; set; } = "";
 
-        [MaxLength(100)]
-        public string Category { get; set; } = "";
+        public ExerciseCategory Category { get; set; } 
 
         public DifficultyLevel DifficultyLevel { get; set; }
 
