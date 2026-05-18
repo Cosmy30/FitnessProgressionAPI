@@ -1,6 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FitnessProgressionAPI.Enums;
 using FitnessProgressionAPI.Models;
-using FitnessProgressionAPI.Enums;
+using Microsoft.EntityFrameworkCore;
 
 namespace FitnessProgressionAPI.Data
 {
