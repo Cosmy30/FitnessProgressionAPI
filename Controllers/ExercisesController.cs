@@ -22,5 +22,18 @@ namespace FitnessProgressionAPI.Controllers
 
             return Ok(result);
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<ExerciseResponseDto>> GetExerciseByIdAsync(int id)
+        {
+            var result = await _exerciseService.GetByIdAsync(id);
+
+            if (result == null)
+            {
+                return NotFound();
+            }
+
+            return Ok(result);
+        }
     }
 }

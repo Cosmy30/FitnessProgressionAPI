@@ -21,5 +21,13 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .Select(ExerciseMappings.ToDtoExpression())
                 .ToListAsync();
         }
+
+        public Task<ExerciseResponseDto?> GetByIdAsync(int id)
+        {
+            return _context.Exercises
+                .Where(e => e.Id == id)
+                .Select(ExerciseMappings.ToDtoExpression())
+                .FirstOrDefaultAsync();
+        }
     }
 }
