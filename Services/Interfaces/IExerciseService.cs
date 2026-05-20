@@ -1,7 +1,9 @@
-﻿namespace FitnessProgressionAPI.Services.Interfaces
+﻿using FitnessProgressionAPI.DTOs.Exercises;
+
+namespace FitnessProgressionAPI.Services.Interfaces
 {
     public interface IExerciseService
     {
-
+        public Task<List<ExerciseResponseDto>> GetAllAsync();
     }
 }
