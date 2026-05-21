@@ -63,6 +63,11 @@ namespace FitnessProgressionAPI.Services.Implementations
                 return null;
             }
 
+            if (!await _context.Exercises.AnyAsync(e => e.Id == dto.ExerciseId))
+            {
+                return null;
+            }
+
             var exerciseLog = dto.ToExerciseLog(workoutId);
             _context.ExerciseLogs.Add(exerciseLog);
             await _context.SaveChangesAsync();
