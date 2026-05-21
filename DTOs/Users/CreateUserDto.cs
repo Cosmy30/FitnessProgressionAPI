@@ -6,21 +6,20 @@ namespace FitnessProgressionAPI.DTOs.Users
     {
         [Required]
         [StringLength(100)]
-        public string Name { get; set; }
+        public string Name { get; set; } = null!;
 
         [Required]
         [EmailAddress]
         [StringLength(255)]
-        public string Email { get; set; }
+        public string Email { get; set; } = null!;
 
         [Required]
         [StringLength(100, MinimumLength = 6)]
-        public string Password { get; set; }
+        public string Password { get; set; } = null!;
 
         public DateTime DateOfBirth { get; set; }
 
         [Range(0, 500)]
         public decimal Weight { get; set; }
-
     }
 }
