@@ -10,7 +10,7 @@ namespace FitnessProgressionAPI.DTOs.Users
 
         [Required]
         [EmailAddress]
-        [StringLength(255)]
+        [StringLength(100)]
         public string Email { get; set; } = null!;
 
         [Required]

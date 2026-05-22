@@ -8,7 +8,7 @@ namespace FitnessProgressionAPI.DTOs.Users
         public string? Name { get; set; }
 
         [EmailAddress]
-        [StringLength(255)]
+        [StringLength(100)]
         public string? Email { get; set; }
 
         [StringLength(100, MinimumLength = 6)]
