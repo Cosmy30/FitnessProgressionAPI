@@ -19,7 +19,7 @@ namespace FitnessProgressionAPI.DTOs.Users
 
         public DateTime DateOfBirth { get; set; }
 
-        [Range(0, 500)]
+        [Range(typeof(decimal), "0.01", "500.00")]
         public decimal Weight { get; set; }
     }
 }

@@ -13,7 +13,7 @@ namespace FitnessProgressionAPI.DTOs.ExerciseLogs
         [Range(1, 1000)]
         public int? Reps { get; set; }
 
-        [Range(0.01, 999.99)]
+        [Range(typeof(decimal), "0.01", "999.99")]
         public decimal? Weight { get; set; }
 
         [Range(1, 3600)]
