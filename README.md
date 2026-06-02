@@ -91,7 +91,11 @@ The Exercises entity was populated using seed data, and the database structure w
 
 ## Validation
 
-The API validates incoming data and enforces business rules before persisting it to the database. The application uses three types of validation: ASP.NET Core model validation, data annotations, and business rules. Data annotations are used both in DTOs (primarily those used by POST and PATCH endpoints) and in database entities. Examples include string length constraints, numeric range validation, required field validation, and format validation for fields such as email addresses. Business rules are primarily implemented within services. Common checks include entity existence validation, foreign key lookups and null checks, while more specific rules include enum validation and ownership validation.
+The API validates incoming data and enforces business rules before persisting it to the database. The application uses three types of validation: ASP.NET Core model validation, data annotations, and business rules. 
+
+Data annotations are used both in DTOs (primarily those used by POST and PATCH endpoints) and in database entities. Examples include string length constraints, numeric range validation, required field validation, and format validation for fields such as email addresses. 
+
+Business rules are primarily implemented within services. Common checks include entity existence validation, foreign key lookups and null checks, while more specific rules include enum validation and ownership validation.
 
 
 ## Running the Project
