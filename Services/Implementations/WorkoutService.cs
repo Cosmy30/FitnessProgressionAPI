@@ -19,7 +19,7 @@ namespace FitnessProgressionAPI.Services.Implementations
             _userContext = userContext;
         }
 
-        public Task<WorkoutResponseDto?> GetById(int id)
+        public Task<WorkoutResponseDto?> GetByIdAsync(int id)
         {
             return _context.Workouts
                 .Where(w => w.Id == id)
@@ -27,7 +27,7 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<List<WorkoutResponseDto>> GetWorkoutsByUserId(int userId, WorkoutType? type)
+        public async Task<List<WorkoutResponseDto>> GetWorkoutsByUserIdAsync(int userId, WorkoutType? type)
         {
             var query = _context.Workouts
                 .Where(w => w.UserId == userId);
@@ -42,7 +42,7 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .ToListAsync();
         }
 
-        public async Task<WorkoutResponseDto?> Create(int userId, CreateWorkoutDto dto)
+        public async Task<WorkoutResponseDto?> CreateAsync(int userId, CreateWorkoutDto dto)
         {
             if (!Enum.IsDefined<WorkoutType>(dto.Type!.Value))
             {
@@ -56,7 +56,7 @@ namespace FitnessProgressionAPI.Services.Implementations
             return workout.ToDto();
         }
 
-        public async Task<WorkoutResponseDto?> Patch(int id, UpdateWorkoutDto dto)
+        public async Task<WorkoutResponseDto?> PatchAsync(int id, UpdateWorkoutDto dto)
         {
             var workout = await _context.Workouts.FindAsync(id);
 
@@ -76,7 +76,7 @@ namespace FitnessProgressionAPI.Services.Implementations
             return workout.ToDto();
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var workout = await _context.Workouts.FindAsync(id);
 
@@ -91,7 +91,7 @@ namespace FitnessProgressionAPI.Services.Implementations
             return true;
         }
 
-        public Task<bool> BelongsToCurrentUser(int workoutId)
+        public Task<bool> BelongsToCurrentUserAsync(int workoutId)
         {
             return _context.Workouts.AnyAsync(w => w.Id == workoutId && w.UserId == _userContext.UserId);
         }

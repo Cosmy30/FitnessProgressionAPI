@@ -21,7 +21,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<WorkoutResponseDto>> GetWorkoutById(int id)
         {
-            var result = await _workoutService.GetById(id);
+            var result = await _workoutService.GetByIdAsync(id);
 
             if (result == null)
             {
@@ -39,7 +39,7 @@ namespace FitnessProgressionAPI.Controllers
                 return NotFound();
             }
             
-            var result = await _workoutService.GetWorkoutsByUserId(userId, type);
+            var result = await _workoutService.GetWorkoutsByUserIdAsync(userId, type);
 
             return Ok(result);
         }
@@ -52,7 +52,7 @@ namespace FitnessProgressionAPI.Controllers
                 return NotFound();
             }
 
-            var result = await _workoutService.Create(userId, dto);
+            var result = await _workoutService.CreateAsync(userId, dto);
 
             if (result == null)
             {
@@ -65,7 +65,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult<WorkoutResponseDto>> PatchWorkout(int id, UpdateWorkoutDto dto)
         {
-            var result = await _workoutService.Patch(id, dto);
+            var result = await _workoutService.PatchAsync(id, dto);
 
             if (result == null)
             {
@@ -78,7 +78,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteWorkout(int id)
         {
-            var result = await _workoutService.Delete(id);
+            var result = await _workoutService.DeleteAsync(id);
 
             if (!result)
             {

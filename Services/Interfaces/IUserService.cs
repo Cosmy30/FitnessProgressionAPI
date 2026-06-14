@@ -4,11 +4,11 @@ namespace FitnessProgressionAPI.Services.Interfaces
 {
     public interface IUserService
     {
-        public Task<List<UserResponseDto>> GetAll();
-        public Task<UserResponseDto?> GetById(int id);
-        public Task<UserResponseDto> Create(CreateUserDto dto);
-        public Task<UserResponseDto?> Patch(int id, UpdateUserDto dto);
-        public Task<bool> Delete(int id);
+        public Task<List<UserResponseDto>> GetAllAsync();
+        public Task<UserResponseDto?> GetByIdAsync(int id);
+        public Task<UserResponseDto> CreateAsync(CreateUserDto dto);
+        public Task<UserResponseDto?> PatchAsync(int id, UpdateUserDto dto);
+        public Task<bool> DeleteAsync(int id);
         public Task<bool> UserExistsAsync(int id);
     }
 }

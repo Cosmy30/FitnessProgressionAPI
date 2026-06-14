@@ -5,9 +5,9 @@ namespace FitnessProgressionAPI.Services.Interfaces
     public interface IExerciseLogService
     {
         public Task<ExerciseLogResponseDto?> GetByIdAsync(int id);
-        public Task<List<ExerciseLogResponseDto>?> GetExerciseLogsByWorkoutId(int workoutId);
-        public Task<ExerciseLogResponseDto?> Create(int workoutId, CreateExerciseLogDto dto);
-        public Task<ExerciseLogResponseDto?> Patch(int id, UpdateExerciseLogDto dto);
-        public Task<bool> Delete(int id);
+        public Task<List<ExerciseLogResponseDto>?> GetExerciseLogsByWorkoutIdAsync(int workoutId);
+        public Task<ExerciseLogResponseDto?> CreateAsync(int workoutId, CreateExerciseLogDto dto);
+        public Task<ExerciseLogResponseDto?> PatchAsync(int id, UpdateExerciseLogDto dto);
+        public Task<bool> DeleteAsync(int id);
     }
 }

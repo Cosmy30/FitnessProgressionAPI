@@ -32,7 +32,7 @@ namespace FitnessProgressionAPI.Services.Implementations
 
             var workoutId = workoutIdOrNull.Value;
 
-            if (!await _workoutService.BelongsToCurrentUser(workoutId))
+            if (!await _workoutService.BelongsToCurrentUserAsync(workoutId))
             {
                 return null;
             }
@@ -43,9 +43,9 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<List<ExerciseLogResponseDto>?> GetExerciseLogsByWorkoutId(int workoutId)
+        public async Task<List<ExerciseLogResponseDto>?> GetExerciseLogsByWorkoutIdAsync(int workoutId)
         {
-            if (!await _workoutService.BelongsToCurrentUser(workoutId))
+            if (!await _workoutService.BelongsToCurrentUserAsync(workoutId))
             {
                 return null;
             }
@@ -56,9 +56,9 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .ToListAsync();
         }
 
-        public async Task<ExerciseLogResponseDto?> Create(int workoutId, CreateExerciseLogDto dto)
+        public async Task<ExerciseLogResponseDto?> CreateAsync(int workoutId, CreateExerciseLogDto dto)
         {
-            if (!await _workoutService.BelongsToCurrentUser(workoutId))
+            if (!await _workoutService.BelongsToCurrentUserAsync(workoutId))
             {
                 return null;
             }
@@ -78,11 +78,11 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<ExerciseLogResponseDto?> Patch(int id, UpdateExerciseLogDto dto)
+        public async Task<ExerciseLogResponseDto?> PatchAsync(int id, UpdateExerciseLogDto dto)
         {
             var exerciseLog = await _context.ExerciseLogs.FindAsync(id);
 
-            if (exerciseLog == null || !await _workoutService.BelongsToCurrentUser(exerciseLog.WorkoutId))
+            if (exerciseLog == null || !await _workoutService.BelongsToCurrentUserAsync(exerciseLog.WorkoutId))
             {
                 return null;
             }
@@ -96,11 +96,11 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var exerciseLog = await _context.ExerciseLogs.FindAsync(id);
 
-            if (exerciseLog == null || !await _workoutService.BelongsToCurrentUser(exerciseLog.WorkoutId))
+            if (exerciseLog == null || !await _workoutService.BelongsToCurrentUserAsync(exerciseLog.WorkoutId))
             {
                 return false;
             }

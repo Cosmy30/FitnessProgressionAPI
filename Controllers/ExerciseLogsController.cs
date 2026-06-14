@@ -32,7 +32,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpGet("/api/workouts/{workoutId}/exercise-logs")]
         public async Task<ActionResult<List<ExerciseLogResponseDto>>> GetWorkoutExerciseLogs(int workoutId)
         {
-            var result = await _exerciseLogService.GetExerciseLogsByWorkoutId(workoutId);
+            var result = await _exerciseLogService.GetExerciseLogsByWorkoutIdAsync(workoutId);
 
             if (result == null)
             {
@@ -45,7 +45,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpPost("/api/workouts/{workoutId}/exercise-logs")]
         public async Task<ActionResult<ExerciseLogResponseDto>> CreateExerciseLog(int workoutId, CreateExerciseLogDto dto)
         {
-            var result = await _exerciseLogService.Create(workoutId, dto);
+            var result = await _exerciseLogService.CreateAsync(workoutId, dto);
 
             if (result == null)
             {
@@ -58,7 +58,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult<ExerciseLogResponseDto>> PatchExerciseLog(int id, UpdateExerciseLogDto dto)
         {
-            var result = await _exerciseLogService.Patch(id, dto);
+            var result = await _exerciseLogService.PatchAsync(id, dto);
 
             if (result == null)
             {
@@ -71,7 +71,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteExerciseLog(int id)
         {
-            var result = await _exerciseLogService.Delete(id);
+            var result = await _exerciseLogService.DeleteAsync(id);
 
             if (!result)
             {

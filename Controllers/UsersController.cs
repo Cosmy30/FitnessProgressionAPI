@@ -18,7 +18,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpGet]
         public async Task<ActionResult<List<UserResponseDto>>> GetUsers()
         {
-            var result = await _userService.GetAll();
+            var result = await _userService.GetAllAsync();
 
             return Ok(result);
         }
@@ -26,7 +26,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpGet("{id}")]
         public async Task<ActionResult<UserResponseDto>> GetUserById(int id)
         {
-            var result = await _userService.GetById(id);
+            var result = await _userService.GetByIdAsync(id);
 
             if (result == null)
             {
@@ -39,7 +39,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpPost]
         public async Task<ActionResult<UserResponseDto>> CreateUser(CreateUserDto dto)
         {
-            var result = await _userService.Create(dto);
+            var result = await _userService.CreateAsync(dto);
 
             return CreatedAtAction(nameof(GetUserById), new { id = result.Id }, result);
         }
@@ -47,7 +47,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpPatch("{id}")]
         public async Task<ActionResult<UserResponseDto>> PatchUser(int id, UpdateUserDto dto)
         {
-            var result = await _userService.Patch(id, dto);
+            var result = await _userService.PatchAsync(id, dto);
 
             if (result == null)
             {
@@ -60,7 +60,7 @@ namespace FitnessProgressionAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser(int id)
         {
-            var result = await _userService.Delete(id);
+            var result = await _userService.DeleteAsync(id);
 
             if (!result)
             {

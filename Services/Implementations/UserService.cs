@@ -16,14 +16,14 @@ namespace FitnessProgressionAPI.Services.Implementations
             _context = context;
         }
 
-        public Task<List<UserResponseDto>> GetAll()
+        public Task<List<UserResponseDto>> GetAllAsync()
         {
             return _context.Users
                 .Select(UserMappings.ToDtoExpression())
                 .ToListAsync();
         }
 
-        public Task<UserResponseDto?> GetById(int id)
+        public Task<UserResponseDto?> GetByIdAsync(int id)
         {
             return _context.Users
                 .Where(u => u.Id == id)
@@ -31,7 +31,7 @@ namespace FitnessProgressionAPI.Services.Implementations
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<UserResponseDto> Create(CreateUserDto dto)
+        public async Task<UserResponseDto> CreateAsync(CreateUserDto dto)
         {
             var user = dto.ToUser();
             _context.Users.Add(user);
@@ -40,7 +40,7 @@ namespace FitnessProgressionAPI.Services.Implementations
             return user.ToDto();
         }
 
-        public async Task<UserResponseDto?> Patch(int id, UpdateUserDto dto)
+        public async Task<UserResponseDto?> PatchAsync(int id, UpdateUserDto dto)
         {
             var user = await _context.Users.FindAsync(id);
 
@@ -55,7 +55,7 @@ namespace FitnessProgressionAPI.Services.Implementations
             return user.ToDto();
         }
 
-        public async Task<bool> Delete(int id)
+        public async Task<bool> DeleteAsync(int id)
         {
             var user = await _context.Users.FindAsync(id);
 

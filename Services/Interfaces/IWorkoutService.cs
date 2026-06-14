@@ -5,11 +5,11 @@ namespace FitnessProgressionAPI.Services.Interfaces
 {
     public interface IWorkoutService
     {
-        public Task<WorkoutResponseDto?> GetById(int id);
-        public Task<List<WorkoutResponseDto>> GetWorkoutsByUserId(int userId, WorkoutType? type);
-        public Task<WorkoutResponseDto?> Create(int userId, CreateWorkoutDto dto);
-        public Task<WorkoutResponseDto?> Patch(int id, UpdateWorkoutDto dto);
-        public Task<bool> Delete(int id);
-        public Task<bool> BelongsToCurrentUser(int workoutId);
+        public Task<WorkoutResponseDto?> GetByIdAsync(int id);
+        public Task<List<WorkoutResponseDto>> GetWorkoutsByUserIdAsync(int userId, WorkoutType? type);
+        public Task<WorkoutResponseDto?> CreateAsync(int userId, CreateWorkoutDto dto);
+        public Task<WorkoutResponseDto?> PatchAsync(int id, UpdateWorkoutDto dto);
+        public Task<bool> DeleteAsync(int id);
+        public Task<bool> BelongsToCurrentUserAsync(int workoutId);
     }
 }
