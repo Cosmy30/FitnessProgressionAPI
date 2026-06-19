@@ -6,7 +6,7 @@ namespace FitnessProgressionAPI.Controllers
 {
 
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/exercise-logs")]
     public class ExerciseLogsController : ControllerBase
     {
         private readonly IExerciseLogService _exerciseLogService;

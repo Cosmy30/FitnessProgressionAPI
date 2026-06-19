@@ -6,7 +6,7 @@ using FitnessProgressionAPI.Enums;
 namespace FitnessProgressionAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/workouts")]
     public class WorkoutsController : ControllerBase
     {
         private readonly IWorkoutService _workoutService;

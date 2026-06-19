@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace FitnessProgressionAPI.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/exercises")]
     public class ExercisesController : ControllerBase
     {
         private readonly IExerciseService _exerciseService;
