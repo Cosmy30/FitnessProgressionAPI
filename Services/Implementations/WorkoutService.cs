@@ -19,16 +19,26 @@ namespace FitnessProgressionAPI.Services.Implementations
             _userContext = userContext;
         }
 
-        public Task<WorkoutResponseDto?> GetByIdAsync(int id)
+        public async Task<WorkoutResponseDto?> GetByIdAsync(int id)
         {
-            return _context.Workouts
+            if (!await BelongsToCurrentUserAsync(id))
+            {
+                return null;
+            }
+
+            return await _context.Workouts
                 .Where(w => w.Id == id)
                 .Select(WorkoutMappings.ToDtoExpression())
                 .FirstOrDefaultAsync();
         }
 
-        public async Task<List<WorkoutResponseDto>> GetWorkoutsByUserIdAsync(int userId, WorkoutType? type)
+        public async Task<List<WorkoutResponseDto>?> GetWorkoutsByUserIdAsync(int userId, WorkoutType? type)
         {
+            if (userId != _userContext.UserId)
+            {
+                return null;
+            }
+
             var query = _context.Workouts
                 .Where(w => w.UserId == userId);
 
@@ -44,11 +54,11 @@ namespace FitnessProgressionAPI.Services.Implementations
 
         public async Task<WorkoutResponseDto?> CreateAsync(int userId, CreateWorkoutDto dto)
         {
-            if (!Enum.IsDefined<WorkoutType>(dto.Type!.Value))
+            if (userId != _userContext.UserId || !Enum.IsDefined<WorkoutType>(dto.Type!.Value))
             {
                 return null;
             }
-            
+
             var workout = dto.ToWorkout(userId);
             _context.Workouts.Add(workout);
             await _context.SaveChangesAsync();
@@ -58,9 +68,7 @@ namespace FitnessProgressionAPI.Services.Implementations
 
         public async Task<WorkoutResponseDto?> PatchAsync(int id, UpdateWorkoutDto dto)
         {
-            var workout = await _context.Workouts.FindAsync(id);
-
-            if (workout == null)
+            if (!await BelongsToCurrentUserAsync(id))
             {
                 return null;
             }
@@ -70,22 +78,22 @@ namespace FitnessProgressionAPI.Services.Implementations
                 return null;
             }
 
-            workout.ApplyUpdate(dto);
+            var workout = await _context.Workouts.FindAsync(id);
+            workout!.ApplyUpdate(dto);
             await _context.SaveChangesAsync();
 
-            return workout.ToDto();
+            return workout!.ToDto();
         }
 
         public async Task<bool> DeleteAsync(int id)
         {
-            var workout = await _context.Workouts.FindAsync(id);
-
-            if (workout == null)
+            if (!await BelongsToCurrentUserAsync(id))
             {
                 return false;
             }
 
-            _context.Workouts.Remove(workout);
+            var workout = await _context.Workouts.FindAsync(id);
+            _context.Workouts.Remove(workout!);
             await _context.SaveChangesAsync();
 
             return true;

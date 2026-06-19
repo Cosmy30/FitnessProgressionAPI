@@ -13,8 +13,8 @@ The goal of this project is to provide a straightforward way for users to record
 ## Features
 
 - User management. Users can be created, updated and deleted. They can also be retrieved individually or as a complete list.
-- Workout management. Supports the standard CRUD operations. Workouts can be retrieved individually or filtered by owner.
-- Exercise logging. Supports the standard CRUD operations. The exercise logs can be retrieved individually or filtered by workout. This section also includes ownership validation.
+- Workout management. Supports the standard CRUD operations. Workouts can be retrieved individually or filtered by owner. Ownership validation is enforced.
+- Exercise logging. Supports the standard CRUD operations. The exercise logs can be retrieved individually or filtered by workout. Ownership validation is enforced.
 - Exercise catalog. Provides read-only access to the predefined exercises available in the system. Exercises can be retrieved individually or as a complete list.
 
 
@@ -150,7 +150,6 @@ Swagger UI is available after starting the application.
 These are some of the improvements that could be implemented in future versions of the project:
 
 - Add authentication and authorization
-- Extend ownership validation to workouts
 - Add detailed Swagger/OpenAPI documentation
 - Add pagination and filtering for collection endpoints
 - Add user roles (admin/user)
