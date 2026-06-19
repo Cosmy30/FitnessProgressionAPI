@@ -59,6 +59,8 @@ The Exercises entity was populated using seed data, and the database structure w
 
 ## API Endpoints
 
+All endpoints are prefixed with `/api`.
+
 ### Users
 
 - GET /users
@@ -77,11 +79,11 @@ The Exercises entity was populated using seed data, and the database structure w
 
 ### ExerciseLogs
 
-- GET /exerciseLogs/{id}
+- GET /exercise-logs/{id}
 - GET /workouts/{workoutId}/exercise-logs
 - POST /workouts/{workoutId}/exercise-logs
-- PATCH /exerciseLogs/{id}
-- DELETE /exerciseLogs/{id}
+- PATCH /exercise-logs/{id}
+- DELETE /exercise-logs/{id}
 
 ### Exercises
 
