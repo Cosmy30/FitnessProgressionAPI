@@ -41,6 +41,11 @@ namespace FitnessProgressionAPI.Controllers
             
             var result = await _workoutService.GetWorkoutsByUserIdAsync(userId, type);
 
+            if (result == null)
+            {
+                return NotFound();
+            }
+
             return Ok(result);
         }
 
@@ -56,7 +61,7 @@ namespace FitnessProgressionAPI.Controllers
 
             if (result == null)
             {
-                return BadRequest("The workout type must be a valid enum value.");
+                return BadRequest("The request could not be processed.");
             }
 
             return CreatedAtAction(nameof(GetWorkoutById), new { id = result.Id }, result);
